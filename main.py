@@ -1,7 +1,7 @@
 import turtle
 
+
 class box(turtle.Turtle):
-  
   def __init__(self,x,y,w,h):
       turtle.Turtle.__init__(self)
       self.shape("square")
@@ -11,10 +11,10 @@ class box(turtle.Turtle):
       self.shapesize(w,h)
    
   def up(self):
-    self.sety(self.ycor() + (self.ycor() < 220) * 40)
+    self.sety(self.ycor() + (self.ycor() < 220) * 20)
     
   def dw(self):
-    self.sety(self.ycor() - (self.ycor() > -220) * 40)
+    self.sety(self.ycor() - (self.ycor() > -220) * 20)
 
   def draw(self):
     self.write("0       0".format(self.pts, self.ptsPc),
@@ -37,8 +37,8 @@ class Bol(box):
       self.pcy = 0
       self.bx = 0
       self.by = 0
-      self.vx = 0
-      self.vy = 0
+      self.vx = 1
+      self.vy = 1
 
   def update(self):
     self.bx += self.vx
@@ -65,42 +65,24 @@ class Bol(box):
         self.pcy -= 1
  
 
-
-
-
-
-#criando a janela, dando título, setando a cor preta com 800 de largura e 600 de altura
-
-#win = start()
-class inicio():
-  ini = turtle.Screen()
-  ini.title('-- Ping Pong XD --')
-  ini.bgcolor("purple")
-  ini.setup(width = 800,height = 600)
-  ini.tracer(0)
-  ini = start()
-
+#criando variaveis dos 2 jogadores, bola, pontuação
 p1 = box(-350,0,8,1)
 p2 = box(350,1,8,1)
 bol = Bol(0 ,0 ,2, 2)
 score = Score(0,230,10,10)
 
-class star():
-  win = turtle.Screen()
-  win.title('-- BOA SORTE ! --')
-  win.bgcolor("black")
-  win.setup(width = 800,height = 600)
-  win.tracer(0)
+#criando a janela, dando título, setando a cor preta com 800 de largura e 600 de altura
+win = turtle.Screen()
+win.title('Ping Pong xD')
+win.bgcolor("black")
+win.setup(width = 800,height = 600)
+win.tracer(0)
 
-  #verificando teclas apertadas
-  win.listen()
-  win.onkeypress(p1.up, "Up")
-  win.onkeypress(p1.dw, "Down")
-
-go = inicio()
+#verificando teclas apertadas
+win.listen()
+win.onkeypress(p1.up, "Up")
+win.onkeypress(p1.dw, "Down")
 
 while True:
-  #win.update()
-  #bol.update()
-  inicio.update()
-  
+  win.update()
+  bol.update()
